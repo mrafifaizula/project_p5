@@ -1,0 +1,55 @@
+@extends('layouts.app', ['pageSlug' => 'dashboard'])
+
+@section('content')
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">Data Eskul
+                    <a href="{{ route('eskul.index') }}" class="btn btn-sm btn-primary"
+                        style="float: right">Kembali</a>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('eskul.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="mb-2">
+                            <label for="eskul">Nama Eskul</label>
+                            <input type="text" class="form-control @error('eskul') is-invalid @enderror" name="eskul">
+                            @error('eskul')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="img">Images</label>
+                            <input type="file" name="img" class="form-control @error('img') is-invalid @enderror">
+                            @error('img')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-2">
+                            <label for="deskripsi">Deskripsi</label>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror"
+                                name="deskripsi"></textarea>
+                            @error('deskripsi')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-2">
+                            <button class="btn btn-sm btn-success" type="submit">Simpan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
